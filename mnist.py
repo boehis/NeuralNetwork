@@ -15,7 +15,7 @@ def get_trained_network_full(input_nodes, hidden_nodes, output_nodes, learning_r
 
 
 def get_trained_network(input_nodes, hidden_nodes, output_nodes, learning_rate, epochs, file):
-    n = neural_net.NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+    n = neural_net.neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
     training_data_file = open("mnist_dataset/" + file, 'r')
     training_data_list = training_data_file.readlines()
@@ -84,7 +84,7 @@ def datasets_from_inputimages():
 
 
 def test_own_images():
-    n = get_trained_network_full(784, 200, 10, 0.2)
+    n = get_trained_network_fast(784, 200, 10, 0.2)
 
     for dataset in datasets_from_inputimages():
         correct_label = dataset[0]
@@ -100,4 +100,4 @@ def test_own_images():
 
 
 # test_network()
-test_own_images()
+#test_own_images()

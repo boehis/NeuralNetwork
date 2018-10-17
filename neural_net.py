@@ -2,7 +2,7 @@ import numpy
 import scipy.special
 
 
-class NeuralNetwork:
+class neuralNetwork:
 
     def __init__(self, inputnodes, hiddennodes, outputnodes, learningrate):
         self.inodes = inputnodes
@@ -15,6 +15,7 @@ class NeuralNetwork:
         self.lr = learningrate
 
         self.activation_function = lambda x: scipy.special.expit(x)
+        self.inverse_activation_function = lambda x: scipy.special.logit(x)
         pass
 
     def train(self, input_list, target_list):
@@ -44,3 +45,24 @@ class NeuralNetwork:
         final_outputs = self.activation_function(final_inputs)
 
         return final_outputs
+
+    def backquery(self, targets_list):
+        final_outputs = numpy.array(targets_list, ndmin=2).T
+
+        final_inputs = self.inverse_activation_function(final_outputs)
+
+        hidden_outputs = numpy.dot(self.who.T, final_inputs)
+        hidden_outputs -= numpy.min(hidden_outputs)
+        hidden_outputs /= numpy.max(hidden_outputs)
+        hidden_outputs *= 0.98
+        hidden_outputs += 0.01
+
+        hidden_inputs = self.inverse_activation_function(hidden_outputs)
+
+        inputs = numpy.dot(self.wih.T, hidden_inputs)
+        inputs -= numpy.min(inputs)
+        inputs /= numpy.max(inputs)
+        inputs *= 0.98
+        inputs += 0.01
+
+        return inputs
