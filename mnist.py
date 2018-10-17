@@ -15,7 +15,7 @@ def get_trained_network_full(input_nodes, hidden_nodes, output_nodes, learning_r
 
 
 def get_trained_network(input_nodes, hidden_nodes, output_nodes, learning_rate, epochs, file):
-    n = neural_net.neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+    n = neural_net.NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
     training_data_file = open("mnist_dataset/" + file, 'r')
     training_data_list = training_data_file.readlines()
