@@ -99,5 +99,5 @@ def test_own_images():
             pass
 
 
-# test_network()
+test_network()
 #test_own_images()
