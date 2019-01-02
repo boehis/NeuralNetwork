@@ -1,19 +1,19 @@
 import numpy
 
-import neural_net
+from neural_networks import fast_neural_network
 import utils.mnist_reader
 
-X_train, y_train = utils.mnist_reader.load_mnist('mnist_fashion_dataset', kind='train')
-X_test, y_test = utils.mnist_reader.load_mnist('mnist_fashion_dataset', kind='t10k')
+X_train, y_train = utils.mnist_reader.load_mnist('../datasets/mnist_fashion_dataset', kind='train')
+X_test, y_test = utils.mnist_reader.load_mnist('../datasets/mnist_fashion_dataset', kind='t10k')
 
 # image_array = numpy.asfarray(X_test[0]).reshape(28, 28)
 # matplotlib.pyplot.imshow(image_array, cmap='Greys', interpolation='None')
 # matplotlib.pyplot.show()
 
 
-n = neural_net.NeuralNetwork(784, 400, 10, 0.2)
+n = fast_neural_network.FastNeuralNetwork(784, 400, 10, 0.2)
 
-epochs = 1
+epochs = 3
 for e in range(epochs):
     for idx, record in enumerate(X_train):
         inputs = (numpy.asfarray(record) / 255.0 * 0.99) + 0.01

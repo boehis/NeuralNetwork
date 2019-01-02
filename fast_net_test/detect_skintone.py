@@ -2,13 +2,13 @@ import random
 
 import numpy
 
-import neural_net
+from neural_networks import fast_neural_network
 
 scorecards = []
 for testrun in range(10):
-    n = neural_net.NeuralNetwork(3, 2, 1, 0.2)
+    n = fast_neural_network.FastNeuralNetwork(3, 2, 1, 0.2)
 
-    training_data_file = open("skintone/skintone_train.csv", 'r')
+    training_data_file = open("../datasets/skintone/skintone_train.csv", 'r')
     training_data_list = training_data_file.readlines()
     training_data_file.close()
 
@@ -21,10 +21,8 @@ for testrun in range(10):
             target *= 0.98
             target += 0.01
             n.train(inputs, target)
-            pass
-        pass
 
-    test_data_file = open("skintone/skintone_test.csv", 'r')
+    test_data_file = open("../datasets/skintone/skintone_test.csv", 'r')
     test_data_list = test_data_file.readlines()
     test_data_file.close()
 

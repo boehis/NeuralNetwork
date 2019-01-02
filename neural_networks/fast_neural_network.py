@@ -2,7 +2,7 @@ import numpy
 import scipy.special
 
 
-class NeuralNetwork:
+class FastNeuralNetwork:
 
     def __init__(self, inputnodes, hiddennodes, outputnodes, learningrate):
         self.inodes = inputnodes
@@ -16,7 +16,6 @@ class NeuralNetwork:
 
         self.activation_function = lambda x: scipy.special.expit(x)
         self.inverse_activation_function = lambda x: scipy.special.logit(x)
-        pass
 
     def train(self, input_list, target_list):
         inputs = numpy.array(input_list, ndmin=2).T
@@ -32,10 +31,9 @@ class NeuralNetwork:
         hidden_errors = numpy.dot(self.who.T, output_errors)
 
         self.who += self.lr * numpy.dot((output_errors * final_outputs * (1.0 - final_outputs)),
-                                        numpy.transpose(hidden_outputs))
+                                        hidden_outputs.T)
         self.wih += self.lr * numpy.dot((hidden_errors * hidden_outputs * (1.0 - hidden_outputs)),
-                                        numpy.transpose(inputs))
-        pass
+                                        inputs.T)
 
     def query(self, inputs):
         hidden_inputs = numpy.dot(self.wih, inputs)

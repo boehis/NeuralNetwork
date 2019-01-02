@@ -1,3 +1,4 @@
+# code copied from https://github.com/zalandoresearch/fashion-mnist/blob/master/utils/mnist_reader.py to help read data
 def load_mnist(path, kind='train'):
     import os
     import gzip
